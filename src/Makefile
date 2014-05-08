@@ -1,8 +1,8 @@
 # Assumes ADMB_HOME has been set up correctly
 EXEC = simple
 SRCS = $(EXEC).cpp      \
-			 SexStructure.cpp \
-			 Stock.cpp
+       SexStructure.cpp \
+       Stock.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 TPLS = $(EXEC).tpl
@@ -26,7 +26,8 @@ $(EXEC).cpp: $(TPLS)
 	$(ADMB_HOME)/bin/tpl2cpp $(TPLS:.tpl=)
 
 clean:
-	$(RM) $(OBJS) $(EXEC).cpp
+	$(RM) $(OBJS) $(EXEC).cpp \
+  *.obj *.cov *.dep *.exe *.hes *.rpt *.log *.bar *.cor *.eva *.htp *.par *.std variance
 
 # generate some information about what your are doing
 rules:
