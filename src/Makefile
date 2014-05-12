@@ -1,8 +1,10 @@
 # Assumes ADMB_HOME has been set up correctly
 EXEC = simple
-SRCS = $(EXEC).cpp      \
-       SexStructure.cpp \
-       Stock.cpp
+SRCS = $(EXEC).cpp       \
+       SexStructure.cpp  \
+       Stock.cpp         \
+       Area.cpp          \
+       AreaContainer.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 TPLS = $(EXEC).tpl

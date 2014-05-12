@@ -2,7 +2,14 @@
 
 Stock::Stock(){
   setName("Uninitialized");
-  SexStructure sex(-1);
+}
+
+Stock::Stock(AreaContainer ac){
+  //setName(name);
+  areaList = ac;
+}
+
+Stock::~Stock(){
 }
 
 adstring Stock::getName(){
@@ -13,10 +20,6 @@ void Stock::setName(adstring name){
   speciesName = name;
 }
 
-SexStructure Stock::getSexStruct(){
-  return(sexStruct);
-}
-
-void Stock::setSexStruct(SexStructure sex){
-  sexStruct = sex;
+AreaContainer Stock::getAreaList(){
+  return(areaList);
 }

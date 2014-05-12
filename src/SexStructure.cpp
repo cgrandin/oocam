@@ -4,6 +4,9 @@ SexStructure::SexStructure(){
   setCode(0);
 }
 
+SexStructure::~SexStructure(){
+}
+
 SexStructure::SexStructure(int code){
   sexCode = code;
 }
