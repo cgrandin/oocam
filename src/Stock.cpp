@@ -2,8 +2,7 @@
 
 Stock::Stock(){
   setName("Uninitialized");
-  SexStructure sex;
-  setSexStruct(sex);
+  SexStructure sex(-1);
 }
 
 adstring Stock::getName(){

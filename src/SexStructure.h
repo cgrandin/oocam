@@ -9,7 +9,7 @@ class SexStructure{
  public:
   SexStructure();
   SexStructure(int);
-  adstring getName();
+  adstring getStatus();
   int getCode();
   void setCode(int);
 };

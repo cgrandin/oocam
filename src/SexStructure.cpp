@@ -16,15 +16,12 @@ int SexStructure::getCode(){
   return(sexCode);
 }
 
-adstring SexStructure::getName(){
+adstring SexStructure::getStatus(){
   if(sexCode == 0){
     return("Combined");
   }
   if(sexCode == 1){
-    return("Female");
-  }
-  if(sexCode == 2){
-    return("Male");
+    return("Split");
   }
   return("Uninitialized");
 }
