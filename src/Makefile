@@ -34,8 +34,8 @@ all: $(EXEC)
 $(EXEC): $(OBJECTS)
 	$(LD) $(LDFLAGS) -o $@ $(OBJECTS) $(LDLIBS)
 	@if [ ! -d "$(BINDIR)" ]; then mkdir -p $(BINDIR); fi
-	mv simple.exe $(BINDIR)
-	cp simple.dat $(BINDIR)
+	mv $(EXEC).exe $(BINDIR)
+	cp $(EXEC).dat $(BINDIR)
 
 $(OBJDIR)%.o: %.cpp
 	@if [ ! -d "$(DESTDIR)" ]; then mkdir -p $(DESTDIR); fi
