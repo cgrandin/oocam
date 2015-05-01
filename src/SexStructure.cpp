@@ -1,30 +1,23 @@
 #include "SexStructure.h"
 
 SexStructure::SexStructure(){
-  setCode(0);
 }
 
 SexStructure::~SexStructure(){
 }
 
-SexStructure::SexStructure(int code){
-  sexCode = code;
+SexStructure::SexStructure(data_int code){
+  m_sex_code = code;
 }
 
-void SexStructure::setCode(int code){
-  sexCode = code;
+void SexStructure::setCode(data_int code){
+  m_sex_code = code;
 }
 
-int SexStructure::getCode(){
-  return(sexCode);
+data_int SexStructure::getCode(){
+  return(m_sex_code);
 }
 
-adstring SexStructure::getStatus(){
-  if(sexCode == 0){
-    return("Combined");
-  }
-  if(sexCode == 1){
-    return("Split");
-  }
-  return("Uninitialized");
+adstring SexStructure::getDescription(){
+  return(m_description);
 }

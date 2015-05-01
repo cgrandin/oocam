@@ -19,7 +19,6 @@ endif
 # Must come after the if statement so debug or dist dirs are correctly prepended
 EXEC := simple
 SRCS := $(wildcard *.cpp)
-SRCS += $(EXEC).cpp
 OBJS := $(SRCS:.cpp=.o)
 TPLS := $(EXEC).tpl
 
@@ -28,7 +27,6 @@ LD = g++
 OBJECTS := $(addprefix $(OBJDIR), $(OBJS))
 
 all: $(EXEC)
-	$(RM) $(EXEC).cpp $(EXEC).htp
 	@echo oocam build completed, DEBUG = $(DEBUG)
 
 $(EXEC): $(OBJECTS)
@@ -42,17 +40,11 @@ $(OBJDIR)%.o: %.cpp
 	@if [ ! -d "$(OBJDIR)" ]; then mkdir -p $(OBJDIR); fi
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Use ADMB lexer to build the cpp file from the tpl
-$(EXEC).cpp: $(TPLS)
-	$(ADMB_HOME)/bin/tpl2cpp $(TPLS:.tpl=)
-
 dist-clean:
 	rm -rf ../build/dist/
-	$(RM) $(EXEC).cpp $(EXEC).htp
 
 debug-clean:
 	rm -rf ../build/debug/
-	$(RM) $(EXEC).cpp $(EXEC).htp
 
 # Show variable values and compiler information
 rules:

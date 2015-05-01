@@ -8,11 +8,11 @@ PARAMETER_SECTION
   vector pred_Y(1,nobs)
   objective_function_value f
 PROCEDURE_SECTION
-  //SexStructure s(1); //Split sex model
-  //Area one(s);
-  //AreaContainer ac;
-  //ac.addArea(one);
-  //Stock stock(ac);
+  SexStructure s(1); //Split sex model
+  Area one(s);
+  AreaContainer ac;
+  ac.addArea(one);
+  Stock stock(ac);
   //SexStructure sexStruct(0); // Both combined
   //stock.setSexStruct(0);
   //stock.setName("Test Stock");

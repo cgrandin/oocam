@@ -5,14 +5,15 @@
 
 class SexStructure{
  private:
-  int sexCode;
+  data_int m_sex_code;
+  adstring m_description;
  public:
   SexStructure();
-  SexStructure(int);
+  SexStructure(data_int);
   ~SexStructure();
-  adstring getStatus();
-  int getCode();
-  void setCode(int);
+  adstring getDescription();
+  data_int getCode();
+  void setCode(data_int);
 };
 
 #endif
