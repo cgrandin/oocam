@@ -1,19 +1,18 @@
 # Assumes ADMB_HOME has been set up correctly
-DEBUG=yes
 
 ifeq ($(DEBUG),yes)
-DESTDIR = ../build/debug
-OBJDIR = ../build/debug/objects/
-BINDIR = ../build/debug/bin/
-LDFLAGS = -O0
-LDLIBS = $(ADMB_HOME)/lib/libadmb.a $(ADMB_HOME)/lib/libadmb-contrib.a
+DESTDIR  = ../build/debug/
+OBJDIR   = ../build/debug/objects/
+BINDIR   = ../build/debug/bin/
+LDFLAGS  = -O0
+LDLIBS   = $(ADMB_HOME)/lib/libadmb.a $(ADMB_HOME)/lib/libadmb-contrib.a
 CXXFLAGS = -g -D__GNUDOS__ -Dlinux -DUSE_LAPLACE  -I. -I$(ADMB_HOME)/include -I$(ADMB_HOME)/contrib/include
 else
-DESTDIR=../build/dist
-OBJDIR = ../build/dist/objects
-BINDIR = ../build/dist/bin/
-LDFLAGS = -O3
-LDLIBS = $(ADMB_HOME)/lib/libadmbo.a $(ADMB_HOME)/lib/libadmb-contribo.a
+DESTDIR  = ../build/dist/
+OBJDIR   = ../build/dist/objects/
+BINDIR   = ../build/dist/bin/
+LDFLAGS  = -O3
+LDLIBS   = $(ADMB_HOME)/lib/libadmbo.a $(ADMB_HOME)/lib/libadmb-contribo.a
 CXXFLAGS = -O3 -Wall -DSAFE_ALL -D__GNUDOS__ -Dlinux -DUSE_LAPLACE  -I. -I$(ADMB_HOME)/include -I$(ADMB_HOME)/contrib/include
 endif
 
@@ -29,6 +28,7 @@ LD = g++
 OBJECTS := $(addprefix $(OBJDIR), $(OBJS))
 
 all: $(EXEC)
+	$(RM) $(EXEC).cpp $(EXEC).htp
 	@echo oocam build completed, DEBUG = $(DEBUG)
 
 $(EXEC): $(OBJECTS)
@@ -46,9 +46,13 @@ $(OBJDIR)%.o: %.cpp
 $(EXEC).cpp: $(TPLS)
 	$(ADMB_HOME)/bin/tpl2cpp $(TPLS:.tpl=)
 
-clean:
-	$(RM) $(OBJECTS) $(EXEC).cpp \
-  *.obj *.cov *.dep *.hes *.rpt *.log *.bar *.cor *.eva *.htp *.par *.std variance
+dist-clean:
+	rm -rf ../build/dist/
+	$(RM) $(EXEC).cpp $(EXEC).htp
+
+debug-clean:
+	rm -rf ../build/debug/
+	$(RM) $(EXEC).cpp $(EXEC).htp
 
 # Show variable values and compiler information
 rules:
@@ -60,11 +64,12 @@ rules:
 	@echo SRCS = $(SRCS)
 	@echo TPLS = $(TPLS)
 	@echo ADMB_HOME = $(ADMB_HOME)
+	@echo MAKE = $(MAKE)
+	@echo DEBUG = $(DEBUG)
 	@echo CC = $(CC)
 	$(CC) --version
+	@echo CXX = $(CXX)
+	$(CXX) --version
 	@echo LD = $(LD)
 	@echo CXXFLAGS = $(CXXFLAGS)
 	@echo LDFLAGS = $(LDFLAGS)
-	@echo CXX = $(CXX)
-	@echo MAKE = $(MAKE)
-	@echo DEBUG = $(DEBUG)
