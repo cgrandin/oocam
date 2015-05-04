@@ -12,8 +12,7 @@ extern "C"  {
 #include <simple.htp>
 
 model_data::model_data(int argc,char * argv[]) : ad_comm(argc,argv){
-  //  Stock stock(nsexage, nsexcatch, nsexsel, syr, nyr, sage, nage, ngear);
-  Stock stock();
+  Stock stock;
   nobs.allocate("nobs");
   Y.allocate(1,nobs,"Y");
   x.allocate(1,nobs,"x");

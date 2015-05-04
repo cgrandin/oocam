@@ -1,13 +1,13 @@
 1    # nsexage
-1    # nsexcatch
-1    # nsexsel
-1996 # syr
+2    # nsexcatch
+3    # nsexsel
+2014 # syr
 2014 # nyr
-1    # sage
+-1    # sage
 20   # nage
-5    # ngear
+3    # ngear
 
-1 0 0 0 0 # Gear allocation 1=allocation 0=survey gear (no allocation)
+21 42 0 # Gear allocation 1=allocation 0=survey gear (no allocation)
 
 # number of observations
 10

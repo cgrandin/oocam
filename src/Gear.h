@@ -5,7 +5,10 @@
 
 class Gear{
  private:
-  int m_is_index;
+  // The tac allocation for this gear.
+  data_int m_allocation;
+  // whether or not this gear is a fishery (i.e. has non-negligible catch)
+  bool m_is_fishery;
  public:
   Gear();
   ~Gear();

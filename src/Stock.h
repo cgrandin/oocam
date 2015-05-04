@@ -1,3 +1,10 @@
+/**
+ * ! Class representing a fish stock
+ *
+ * This class represents a fish stock, including the number of sexes, years for
+ * assessment, and a std::list of Gear types.
+ */
+
 #include <admodel.h>
 #include <list>
 #include "Gear.h"
@@ -19,6 +26,9 @@ class Stock{
   data_int m_ngear;
   data_vector m_gearalloc;
   list <Gear> m_gear_list;
+  void m_verify_sexes();
+  void m_verify_years();
+  void m_verify_ages();
  public:
   Stock();
   ~Stock();
