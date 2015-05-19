@@ -6,13 +6,11 @@
  */
 
 #include <admodel.h>
-#include <list>
+#include <vector>
 #include "Gear.h"
 
 #ifndef _STOCK_H
 #define _STOCK_H
-
-using std::list;
 
 class Stock{
  private:
@@ -25,7 +23,7 @@ class Stock{
   data_int m_nage;
   data_int m_ngear;
   data_vector m_gearalloc;
-  list <Gear> m_gear_list;
+  std::vector<Gear> m_gear_vector;
   void m_verify_sexes();
   void m_verify_years();
   void m_verify_ages();

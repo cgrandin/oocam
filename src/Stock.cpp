@@ -29,11 +29,12 @@ Stock::Stock(){
 
   m_ngear.allocate(adstring("ngear"));
 
-  // Populate gears using standard (doubly-linked) list. Gear class
+  // Populate gears using standard vector. Gear class
   // will read in the allocation vector, one by one for
-  // each gear. Note: In iscam this vector is normalized.
+  // each gear. Note: In iscam this vector is normalized, but isn't here.
+  m_gear_vector.reserve(m_ngear);
   for(int i=1; i<=m_ngear; i++){
-    m_gear_list.push_back(Gear());
+    m_gear_vector.push_back(Gear());
   }
 }
 
