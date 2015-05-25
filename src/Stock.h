@@ -29,6 +29,7 @@ class Stock{
   void m_verify_ages();
  public:
   Stock();
+  void allocate();
   ~Stock();
 };
 

@@ -1,18 +1,28 @@
-#include "Stock.h"
-#include "Gear.h"
-#include "SexStructure.h"
+// oocam.cpp
+// This is the main model code, which creates the objects and
+//  minimizes the model.
 
+// include oocam-related header files
+#include "Stock.h"
+
+// include ADMB-related header files
 #include <admodel.h>
 #include <contrib.h>
 
+// required for proper implementation of ad_exit
 extern "C"  {
   void ad_boundf(int i);
 }
 
-#include <simple.htp>
+#include <oocam.h>
+
+// Must put Stock object at global scope due to ADMB's non-OO design.
+// This way, it can be referenced in the model_data and model_parameter
+//  classes and in model_parameters::userfunction
+Stock stock;
 
 model_data::model_data(int argc,char * argv[]) : ad_comm(argc,argv){
-  Stock *stock = new Stock();
+  stock.allocate();
   nobs.allocate("nobs");
   Y.allocate(1,nobs,"Y");
   x.allocate(1,nobs,"x");
@@ -73,12 +83,14 @@ long int arrmblsize = 0;
 
 int main(int argc,char * argv[]){
   ad_set_new_handler();
-  ad_exit=&ad_boundf;
+  ad_exit = &ad_boundf;
+	arrmblsize = 50000000;
+	gradient_structure::set_GRADSTACK_BUFFER_SIZE(1.e7);
+	gradient_structure::set_CMPDIF_BUFFER_SIZE(1.e7);
+	gradient_structure::set_MAX_NVAR_OFFSET(5000);
+	gradient_structure::set_NUM_DEPENDENT_VARIABLES(5000);
   gradient_structure::set_NO_DERIVATIVES();
   gradient_structure::set_YES_SAVE_VARIABLES_VALUES();
-  if (!arrmblsize){
-    arrmblsize = 15000000;
-  }
   model_parameters mp(arrmblsize,argc,argv);
   mp.iprint = 10;
   mp.preliminary_calculations();
@@ -86,6 +98,7 @@ int main(int argc,char * argv[]){
   return 0;
 }
 
+// required for proper implementation of ad_exit
 extern "C"  {
   void ad_boundf(int i){
     exit(i);

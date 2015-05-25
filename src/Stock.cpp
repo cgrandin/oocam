@@ -4,8 +4,9 @@
 #define MAX_YEAR 2016
 #endif
 
-Stock::Stock(){
-  // read in the data variables for this stock
+Stock::Stock(){}
+void Stock::allocate(){
+  // Read in the data variables for this stock
   // m_nsexage is the main sex variable for this model
   // If this is 1, then m_nsexcatch and m_nsexsel
   // are ignored. Must be either 0 (combined), 1 (male),

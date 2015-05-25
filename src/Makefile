@@ -19,7 +19,7 @@ CXXFLAGS = -O3 -Wall -DSAFE_ALL -D__GNUDOS__ -Dlinux -DUSE_LAPLACE  -I. -I$(ADMB
 endif
 
 # Must come after the if statement so debug or dist dirs are correctly prepended
-EXEC := simple
+EXEC := oocam
 SRCS := $(wildcard *.cpp)
 OBJS := $(SRCS:.cpp=.o)
 TPLS := $(EXEC).tpl
