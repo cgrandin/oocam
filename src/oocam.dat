@@ -2,17 +2,42 @@
 2    # nsexcatch
 3    # nsexsel
 1996 # syr
-2014 # nyr
+2014 # eyr
 1    # sage
-20   # nage
-3    # ngear
+20   # eage
+1    # ngear
 
-21 42 0 # Gear allocation 1=allocation 0=survey gear (no allocation)
-
-# number of observations
-10
-# observed Y values
-1.4  4.7  5.1  8.3  9.0  14.5  14.0  13.4  19.2  18
-# observed x values
--1  0 1  2  3  4  5  6  7  8
-
+1 # Gear allocation 1=allocation,0=survey gear(no allocation)
+# -------------------------------------------------------------------------
+# TIME SERIES DATA
+# -------------------------------------------------------------------------
+# Observed catch
+# sexstructure: 1=female, 2=male, 0=asexual
+# Type of catch:
+#               1 = catch in weight
+#               2 = catch in numbers
+#               3 = catch in spawn (roe)
+# sexstructure, type for gear 1
+1 1
+# number of catch observations for gear 1
+19
+# year  sex value
+  1996  0   6.7272
+  1997  0   4.8192
+  1998  0   5.5279
+  1999  0   6.1572
+  2000  0   6.5100
+  2001  0   9.3936
+  2002  0   6.1640
+  2003  0   5.8648
+  2004  0   7.3327
+  2005  0  16.6058
+  2006  0   5.3423
+  2007  0   5.1667
+  2008  0   4.5003
+  2009  0   2.9351
+  2010  0   1.8063
+  2011  0   5.5341
+  2012  0   6.2095
+  2013  0   8.5062
+  2014  0  10.6789

@@ -36,6 +36,7 @@ $(EXEC): $(OBJECTS)
 	@if [ ! -d "$(BINDIR)" ]; then mkdir -p $(BINDIR); fi
 	mv $(EXEC).exe $(BINDIR)
 	cp $(EXEC).dat $(BINDIR)
+	cp $(EXEC).ctl $(BINDIR)
 
 $(OBJDIR)%.o: %.cpp
 	@if [ ! -d "$(DESTDIR)" ]; then mkdir -p $(DESTDIR); fi

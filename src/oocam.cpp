@@ -2,6 +2,9 @@
 // This is the main model code, which creates the objects and
 //  minimizes the model.
 
+// Singleton logger class, can be accessed through any other class
+#include "Logger.h"
+
 // include oocam-related header files
 #include "Stock.h"
 
@@ -16,30 +19,36 @@ extern "C"  {
 
 #include <oocam.h>
 
-// Must put Stock object at global scope due to ADMB's non-OO design.
-// This way, it can be referenced in the model_data and model_parameter
-//  classes and in model_parameters::userfunction
+// Must put Stock object at global scope due to ADMB's non-OO
+// design. This way, it can be referenced in the model_data and
+// model_parameter classes and in model_parameters::userfunction.
 Stock stock;
+//Logger* logger = Logger::Instance();
 
 model_data::model_data(int argc,char * argv[]) : ad_comm(argc,argv){
   stock.allocate();
-  nobs.allocate("nobs");
-  Y.allocate(1,nobs,"Y");
-  x.allocate(1,nobs,"x");
+  //parameters.allocate();
+
+  // Old remnants of simple.cpp
+  //nobs.allocate("nobs");
+  //Y.allocate(1,nobs,"Y");
+  //x.allocate(1,nobs,"x");
 }
 
 model_parameters::model_parameters(int sz,int argc,char * argv[]) :
  model_data(argc,argv) , function_minimizer(sz){
   initializationfunction();
-  a.allocate("a");
-  b.allocate("b");
-  pred_Y.allocate(1,nobs,"pred_Y");
-  #ifndef NO_AD_INITIALIZE
-    pred_Y.initialize();
-  #endif
-  f.allocate("f");
-  prior_function_value.allocate("prior_function_value");
-  likelihood_function_value.allocate("likelihood_function_value");
+
+  // Old remnants of simple.cpp
+  // a.allocate("a");
+  // b.allocate("b");
+  // pred_Y.allocate(1,nobs,"pred_Y");
+  // #ifndef NO_AD_INITIALIZE
+  //   pred_Y.initialize();
+  // #endif
+  // f.allocate("f");
+  // prior_function_value.allocate("prior_function_value");
+  // likelihood_function_value.allocate("likelihood_function_value");
 }
 
 void model_parameters::userfunction(void){
@@ -54,9 +63,11 @@ void model_parameters::userfunction(void){
   //stock.setName("Test Stock");
   //cout<<"Sex structure is '"<<sexStruct.getStatus()<<"'"<<endl;
   //cout<<stock.getName()<<endl;
-  pred_Y = a*x+b;
-  f = norm2(pred_Y-Y);
-  f = nobs/2.*log(f);
+
+  // Old remnants of simple.cpp
+  // pred_Y = a*x+b;
+  // f = norm2(pred_Y-Y);
+  // f = nobs/2.*log(f);
 }
 
 void model_parameters::preliminary_calculations(void){
@@ -84,7 +95,7 @@ long int arrmblsize = 0;
 int main(int argc,char * argv[]){
   ad_set_new_handler();
   ad_exit = &ad_boundf;
-	arrmblsize = 50000000;
+	arrmblsize = 200000000;
 	gradient_structure::set_GRADSTACK_BUFFER_SIZE(1.e7);
 	gradient_structure::set_CMPDIF_BUFFER_SIZE(1.e7);
 	gradient_structure::set_MAX_NVAR_OFFSET(5000);
